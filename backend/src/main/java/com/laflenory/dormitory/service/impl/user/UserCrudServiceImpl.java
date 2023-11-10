@@ -43,8 +43,12 @@ public class UserCrudServiceImpl extends UserCrudService {
     public User update(User user) throws EntityUpdateException {
         try {
             var targetUser = this.read(user.getId());
+
+            targetUser.setFirstName(user.getFirstName());
+            targetUser.setLastName(user.getLastName());
             targetUser.setUsername(user.getUsername());
             targetUser.setPassword(user.getPassword());
+
             return this.userRepository.save(targetUser);
         } catch (EntityNotFoundException error) {
             throw new EntityUpdateException("Произошла ошибка при обновлении данных пользователя: " + error.getMessage());

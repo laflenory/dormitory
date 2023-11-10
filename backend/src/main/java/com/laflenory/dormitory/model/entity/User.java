@@ -10,6 +10,12 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "users")
 public class User extends Base {
+    @Column(name = "firstName", nullable = false)
+    private String firstName;
+
+    @Column(name = "firstName", nullable = false)
+    private String lastName;
+
     @Column(name = "username", nullable = false)
     private String username;
 
