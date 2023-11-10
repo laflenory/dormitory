@@ -1,10 +1,8 @@
 package com.laflenory.dormitory.service.api;
 
-import java.util.UUID;
-
-public interface BaseCrudService<T> {
+public interface BaseCrudService<T, U> {
     T create(T entity);
-    T read(UUID entityId);
+    T read(U entityId);
     T update(T entity);
-    void delete(UUID entityId);
+    void delete(U entityId);
 }
