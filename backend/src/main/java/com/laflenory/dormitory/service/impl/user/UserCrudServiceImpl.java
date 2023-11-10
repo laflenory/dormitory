@@ -14,8 +14,7 @@ import java.util.UUID;
 public class UserCrudServiceImpl extends UserCrudService {
     private final UserRepository userRepository;
 
-    @Override
-    public User create(User user) throws EntityExistsException, EntityCreateException {
+    public User create(User user) {
         if (this.userRepository.findByUsername(user.getUsername()).isPresent()) {
             throw new EntityExistsException("Пользователь уже существует.");
         }
@@ -27,28 +26,24 @@ public class UserCrudServiceImpl extends UserCrudService {
         }
     }
 
-    @Override
-    public User read(UUID userId) throws EntityNotFoundException, EntityCreateException {
+    public User read(UUID userId) {
         try {
             return this.userRepository.findById(userId)
                     .orElseThrow(() -> new EntityNotFoundException("Пользователя не существует."));
         } catch (EntityNotFoundException error) {
-            throw new EntityCreateException("Не удалось получить пользователя: " + error.getMessage());
+            throw new EntityReadException("Не удалось получить пользователя: " + error.getMessage());
         } catch (Exception error) {
-            throw new EntityCreateException("Не удалось получить пользователя.");
+            throw new EntityReadException("Не удалось получить пользователя.");
         }
     }
 
-    @Override
-    public User update(User user) throws EntityUpdateException {
+    public User update(User user) {
         try {
             var targetUser = this.read(user.getId());
-
             targetUser.setFirstName(user.getFirstName());
             targetUser.setLastName(user.getLastName());
             targetUser.setUsername(user.getUsername());
             targetUser.setPassword(user.getPassword());
-
             return this.userRepository.save(targetUser);
         } catch (EntityNotFoundException error) {
             throw new EntityUpdateException("Произошла ошибка при обновлении данных пользователя: " + error.getMessage());
@@ -57,11 +52,10 @@ public class UserCrudServiceImpl extends UserCrudService {
         }
     }
 
-    @Override
-    public void delete(UUID userId) throws EntityDeleteException {
+    public void delete(UUID userId) {
         try {
             this.userRepository.deleteById(this.read(userId).getId());
-        } catch (EntityNotFoundException error) {
+        } catch (EntityReadException error) {
             throw new EntityDeleteException("Произошла ошибка при удалении данных пользователя: " + error.getMessage());
         } catch (Exception error) {
             throw new EntityDeleteException("Произошла ошибка при удалении данных пользователя.");

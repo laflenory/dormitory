@@ -16,7 +16,6 @@ public class UserRestControllerImpl extends UserRestController {
     protected final UserCrudService userCrudService;
 
     @PostMapping
-    @Override
     public ApplicationResponse<User> create(@RequestBody User user) {
         return new ApplicationResponse<>(
                 "Пользователь был успешно добавлен.",
@@ -25,7 +24,6 @@ public class UserRestControllerImpl extends UserRestController {
     }
 
     @GetMapping("/{userId}")
-    @Override
     public ApplicationResponse<User> read(@PathVariable UUID userId) {
         return new ApplicationResponse<>(
                 "Пользователь был успешно получен",
@@ -34,7 +32,6 @@ public class UserRestControllerImpl extends UserRestController {
     }
 
     @PutMapping
-    @Override
     public ApplicationResponse<User> update(@RequestBody User user) {
         return new ApplicationResponse<>(
                 "Пользователь был успешно обновлён.",
@@ -43,7 +40,6 @@ public class UserRestControllerImpl extends UserRestController {
     }
 
     @DeleteMapping("/{userId}")
-    @Override
     public ApplicationResponse<?> delete(@PathVariable UUID userId) {
         this.userCrudService.delete(userId);
 
