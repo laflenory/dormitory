@@ -9,5 +9,5 @@ public interface BaseRestController<T, U> {
 
     ApplicationResponse<T> update(T entity);
 
-    Object delete(U entityId);
+    ApplicationResponse<?> delete(U entityId);
 }

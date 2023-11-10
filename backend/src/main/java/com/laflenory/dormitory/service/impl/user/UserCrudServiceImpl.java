@@ -31,7 +31,7 @@ public class UserCrudServiceImpl extends UserCrudService {
             return this.userRepository.findById(userId)
                     .orElseThrow(() -> new EntityNotFoundException("Пользователя не существует."));
         } catch (EntityNotFoundException error) {
-            throw new EntityReadException("Не удалось получить пользователя: " + error.getMessage());
+            throw new EntityReadException("Не удалось получить пользователя -> " + error.getMessage());
         } catch (Exception error) {
             throw new EntityReadException("Не удалось получить пользователя.");
         }
@@ -46,7 +46,7 @@ public class UserCrudServiceImpl extends UserCrudService {
             targetUser.setPassword(user.getPassword());
             return this.userRepository.save(targetUser);
         } catch (EntityNotFoundException error) {
-            throw new EntityUpdateException("Произошла ошибка при обновлении данных пользователя: " + error.getMessage());
+            throw new EntityUpdateException("Произошла ошибка при обновлении данных пользователя -> " + error.getMessage());
         } catch (Exception error) {
             throw new EntityUpdateException("Произошла ошибка при обновлении данных пользователя.");
         }
@@ -56,7 +56,7 @@ public class UserCrudServiceImpl extends UserCrudService {
         try {
             this.userRepository.deleteById(this.read(userId).getId());
         } catch (EntityReadException error) {
-            throw new EntityDeleteException("Произошла ошибка при удалении данных пользователя: " + error.getMessage());
+            throw new EntityDeleteException("Произошла ошибка при удалении данных пользователя -> " + error.getMessage());
         } catch (Exception error) {
             throw new EntityDeleteException("Произошла ошибка при удалении данных пользователя.");
         }

@@ -31,7 +31,7 @@ public class UniversityCrudServiceImpl extends UniversityCrudService {
             return this.universityRepository.findById(universityId)
                     .orElseThrow(() -> new EntityNotFoundException("Университета не существует."));
         } catch (EntityNotFoundException error) {
-            throw new EntityReadException("Не удалось получить университет: " + error.getMessage());
+            throw new EntityReadException("Не удалось получить университет -> " + error.getMessage());
         } catch (Exception error) {
             throw new EntityReadException("Не удалось получить университет.");
         }
@@ -44,7 +44,7 @@ public class UniversityCrudServiceImpl extends UniversityCrudService {
             targetUniversity.setDurationOfStudy(university.getDurationOfStudy());
             return universityRepository.save(university);
         } catch (EntityNotFoundException error) {
-            throw new EntityUpdateException("Произошла ошибка при обновлении данных университета: " + error.getMessage());
+            throw new EntityUpdateException("Произошла ошибка при обновлении данных университета -> " + error.getMessage());
         } catch (Exception error) {
             throw new EntityUpdateException("Произошла ошибка при обновлении данных университета.");
         }
@@ -52,9 +52,9 @@ public class UniversityCrudServiceImpl extends UniversityCrudService {
 
     public void delete(UUID universityId) {
         try {
-            this.universityRepository.delete(this.read(universityId));
+            this.universityRepository.deleteById(this.read(universityId).getId());
         } catch (EntityReadException error) {
-            throw new EntityDeleteException("Произошла ошибка при удалении университета: " + error.getMessage());
+            throw new EntityDeleteException("Произошла ошибка при удалении университета -> " + error.getMessage());
         } catch (Exception error) {
             throw new EntityDeleteException("Произошла ошибка при удалении университета.");
         }
