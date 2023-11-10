@@ -1,9 +1,0 @@
-package com.laflenory.dormitory.repository.api;
-
-import com.laflenory.dormitory.model.entity.User;
-import org.springframework.data.repository.CrudRepository;
-
-import java.util.UUID;
-
-public interface UserRepository extends CrudRepository<User, UUID> {
-}

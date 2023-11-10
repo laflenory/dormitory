@@ -1,0 +1,40 @@
+package com.laflenory.dormitory.service.impl.user;
+
+import com.laflenory.dormitory.model.entity.User;
+import com.laflenory.dormitory.repository.api.UserRepository;
+import com.laflenory.dormitory.service.api.user.UserCrudService;
+import com.laflenory.dormitory.web.exception.EntityExistsException;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.UUID;
+
+@Service
+@RequiredArgsConstructor
+public class UserCrudServiceImpl extends UserCrudService {
+    private final UserRepository userRepository;
+
+    @Override
+    public User create(User user) {
+        if (this.userRepository.findByUsername(user.getUsername()).isPresent()) {
+            throw new EntityExistsException("Пользователь уже существует.");
+        }
+
+        return this.userRepository.save(user);
+    }
+
+    @Override
+    public User read(UUID userId) {
+        return this.userRepository.findById(userId).orElse(null);
+    }
+
+    @Override
+    public User update(User user) {
+        return this.userRepository.save(user);
+    }
+
+    @Override
+    public void delete(UUID userId) {
+        this.userRepository.deleteById(userId);
+    }
+}
