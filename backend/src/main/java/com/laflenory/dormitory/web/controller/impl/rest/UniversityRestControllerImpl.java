@@ -41,7 +41,9 @@ public class UniversityRestControllerImpl extends UniversityRestController {
     }
 
     @DeleteMapping("/{universityId}")
-    public Object delete(@PathVariable UUID entityId) {
+    public Object delete(@PathVariable UUID universityId) {
+        this.universityCrudService.delete(universityId);
+
         return new ApplicationResponse<>(
                 "Университет был успешно удалён.",
                 null
