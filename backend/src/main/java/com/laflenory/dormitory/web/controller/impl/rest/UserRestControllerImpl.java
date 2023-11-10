@@ -24,7 +24,7 @@ public class UserRestControllerImpl extends UserRestController {
         );
     }
 
-    @GetMapping
+    @GetMapping("/{userId}")
     @Override
     public ApplicationResponse<User> read(@PathVariable UUID userId) {
         return new ApplicationResponse<>(
@@ -42,9 +42,14 @@ public class UserRestControllerImpl extends UserRestController {
         );
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{userId}")
     @Override
-    public void delete(UUID userId) {
+    public ApplicationResponse<?> delete(@PathVariable UUID userId) {
         this.userCrudService.delete(userId);
+
+        return new ApplicationResponse<>(
+                "Пользователь был успешно удалён.",
+                null
+        );
     }
 }
