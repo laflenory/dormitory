@@ -1,9 +1,9 @@
-package com.laflenory.dormitory.controller.impl.rest;
+package com.laflenory.dormitory.web.controller.impl.rest;
 
-import com.laflenory.dormitory.controller.api.rest.UserRestController;
 import com.laflenory.dormitory.model.entity.User;
 import com.laflenory.dormitory.service.api.user.UserCrudService;
 import com.laflenory.dormitory.web.ApplicationResponse;
+import com.laflenory.dormitory.web.controller.api.rest.UserRestController;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

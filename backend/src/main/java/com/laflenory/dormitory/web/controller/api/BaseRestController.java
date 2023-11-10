@@ -1,4 +1,4 @@
-package com.laflenory.dormitory.controller.api;
+package com.laflenory.dormitory.web.controller.api;
 
 import com.laflenory.dormitory.web.ApplicationResponse;
 

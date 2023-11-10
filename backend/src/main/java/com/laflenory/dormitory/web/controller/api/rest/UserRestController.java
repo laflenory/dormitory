@@ -1,7 +1,7 @@
-package com.laflenory.dormitory.controller.api.rest;
+package com.laflenory.dormitory.web.controller.api.rest;
 
-import com.laflenory.dormitory.controller.api.BaseRestController;
 import com.laflenory.dormitory.model.entity.User;
+import com.laflenory.dormitory.web.controller.api.BaseRestController;
 
 import java.util.UUID;
 
