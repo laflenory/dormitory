@@ -5,12 +5,11 @@ import com.laflenory.dormitory.service.api.university.UniversityCrudService;
 import com.laflenory.dormitory.web.ApplicationResponse;
 import com.laflenory.dormitory.web.controller.api.rest.UniversityRestController;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
-@Controller
+@RestController
 @RequestMapping("/api/university")
 @RequiredArgsConstructor
 public class UniversityRestControllerImpl extends UniversityRestController {
