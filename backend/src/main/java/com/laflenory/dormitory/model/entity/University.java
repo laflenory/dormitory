@@ -1,9 +1,6 @@
 package com.laflenory.dormitory.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,6 +14,9 @@ import java.util.List;
 public class University extends BaseEntity {
     @OneToMany(mappedBy = "university")
     private List<Student> students = new ArrayList<>();
+
+    @OneToMany(mappedBy = "university", cascade = CascadeType.ALL)
+    private List<Dormitory> dormitories = new ArrayList<>();
 
     @Column(name = "university_name", nullable = false)
     private String universityName;
