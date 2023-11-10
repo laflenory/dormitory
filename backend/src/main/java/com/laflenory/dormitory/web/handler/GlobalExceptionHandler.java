@@ -1,4 +1,4 @@
-package com.laflenory.dormitory.handler;
+package com.laflenory.dormitory.web.handler;
 
 import com.laflenory.dormitory.web.ApplicationResponse;
 import com.laflenory.dormitory.web.exception.*;

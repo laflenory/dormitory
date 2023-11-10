@@ -26,7 +26,7 @@ public class UserRestControllerImpl extends UserRestController {
     @GetMapping("/{userId}")
     public ApplicationResponse<User> read(@PathVariable UUID userId) {
         return new ApplicationResponse<>(
-                "Пользователь был успешно получен",
+                "Пользователь был успешно получен.",
                 this.userCrudService.read(userId)
         );
     }
