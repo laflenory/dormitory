@@ -10,6 +10,9 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Table(name = "users")
 public class User extends BaseEntity {
+    @OneToOne(mappedBy = "details")
+    private Student student;
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
 

@@ -13,9 +13,17 @@ import java.sql.Date;
 @Entity
 @Table(name = "students")
 public class Student extends BaseEntity {
+    @OneToOne
+    @JoinColumn(name = "user_id")
+    private User details;
+
     @Column(name = "gender", nullable = false)
     @Enumerated(EnumType.STRING)
     private StudentGender gender = StudentGender.MALE;
+
+    @OneToOne
+    @JoinColumn(name = "university_id")
+    private University university;
 
     @Column(name = "year_of_admission", nullable = false)
     private int yearOfAdmission;
